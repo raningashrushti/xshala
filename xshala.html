@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XShala - शिक्षा और कौशल विकास - शिक्षण आणि कौशल्य विकास</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
+
+        /* Animated Dark STEM Background */
+        .animated-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Enhanced Floating STEM Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            color: rgba(0, 255, 255, 0.3);
+            font-size: 4rem;
+            animation: float 25s infinite linear;
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        .floating-element:nth-child(odd) {
+            animation-direction: reverse;
+            color: rgba(255, 0, 255, 0.3);
+        }
+
+        .floating-element:nth-child(3n) {
+            color: rgba(0, 255, 0, 0.3);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) rotate(36deg) scale(0.7);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) rotate(324deg) scale(0.7);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Neon Circuit Lines */
+        .circuit-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, #00ffff, transparent);
+            height: 2px;
+            animation: circuitFlow 8s infinite;
+        }
+
+        .circuit-line:nth-child(1) {
+            top: 20%;
+            width: 100%;
+            animation-delay: 0s;
+        }
+
+        .circuit-line:nth-child(2) {
+            top: 60%;
+            width: 100%;
+            animation-delay: -2s;
+            background: linear-gradient(90deg, transparent, #ff00ff, transparent);
+        }
+
+        .circuit-line:nth-child(3) {
+            top: 80%;
+            width: 100%;
+            animation-delay: -4s;
+            background: linear-gradient(90deg, transparent, #00ff00, transparent);
+        }
+
+        @keyframes circuitFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* DNA Helix Enhanced */
+        .dna-helix {
+            position: fixed;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 150px;
+            height: 400px;
+            z-index: -1;
+        }
+
+        .dna-strand {
+            position: absolute;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, #00ffff, #ff00ff);
+            border-radius: 3px;
+            animation: dnaRotate 12s infinite linear;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .dna-strand:nth-child(1) {
+            left: 30px;
+            transform-origin: center;
+        }
+
+        .dna-strand:nth-child(2) {
+            right: 30px;
+            animation-delay: -6s;
+            background: linear-gradient(180deg, #ff00ff, #00ff00);
+        }
+
+        @keyframes dnaRotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #00ffff;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffffff;
+            text-decoration: none;
+            position: relative;
+            text-shadow: 0 0 20px #00ffff;
+        }
+
+        .logo span {
+            color: #00ffff;
+            animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 20px #00ffff; }
+            100% { text-shadow: 0 0 30px #00ffff, 0 0 40px #00ffff; }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+            color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .language-btn {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .language-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 255, 255, 0.3);
+        }
+
+        .language-btn.active {
+            background: linear-gradient(45deg, #ff00ff, #00ff00);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.3); text-shadow: 0 0 30px rgba(0, 255, 255, 0.5); }
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #cccccc;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #00ffff;
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: #00ffff;
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+        }
+
+        /* STEM Info Section */
+        .stem-info {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        .stem-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(0, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+            background: rgba(0, 255, 255, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #00ffff;
+        }
+
+        /* Services Section */
+        .services {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(255, 0, 255, 0.1));
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 255, 255, 0.2);
+            border-color: #00ffff;
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #00ffff;
+            animation: bounce 2s infinite;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #00ffff;
+        }
+
+        .service-card ul {
+            list-style: none;
+            color: #cccccc;
+        }
+
+        .service-card li {
+            margin-bottom: 0.8rem;
+            padding-left: 2rem;
+            position: relative;
+            transition: transform 0.2s ease;
+            font-size: 1.1rem;
+        }
+
+        .service-card li:hover {
+            transform: translateX(5px);
+            color: #00ffff;
+        }
+
+        .service-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Features Section */
+        .features {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 4rem 0;
+            margin: 2rem 0;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.2);
+            background: rgba(0, 255, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #00ff00;
+            animation: pulse 2s infinite;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 3rem 0 1rem;
+            margin-top: 2rem;
+            border-top: 2px solid #00ffff;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #00ffff;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #cccccc;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #00ffff;
+            text-shadow: 0 0 10px #00ffff;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            color: #cccccc;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #000;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 255, 255, 0.6);
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(15px);
+            border: 2px solid #00ffff;
+            border-radius: 20px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            padding: 1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            border-radius: 15px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.bot {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            color: #ffffff;
+            margin-right: auto;
+        }
+
+        .message.user {
+            background: rgba(255, 0, 255, 0.1);
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            color: #ffffff;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .chatbot-input-container {
+            padding: 1rem;
+            border-top: 1px solid rgba(0, 255, 255, 0.3);
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 0.8rem 1rem;
+            color: #ffffff;
+            outline: none;
+        }
+
+        .chatbot-input:focus {
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+        }
+
+        .voice-btn, .send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .voice-btn {
+            background: linear-gradient(45deg, #ff00ff, #00ff00);
+            color: #000;
+        }
+
+        .voice-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .voice-btn.recording {
+            animation: recordingPulse 1s infinite;
+        }
+
+        @keyframes recordingPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .send-btn {
+            background: linear-gradient(45deg, #00ffff, #0080ff);
+            color: #000;
+        }
+
+        .send-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Language Toggle Styles */
+        .hindi, .marathi {
+            display: none;
+        }
+
+        body.lang-hindi .english {
+            display: none;
+        }
+
+        body.lang-hindi .hindi {
+            display: block;
+        }
+
+        body.lang-marathi .english {
+            display: none;
+        }
+
+        body.lang-marathi .marathi {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 80%;
+                max-width: 300px;
+            }
+
+            .floating-element {
+                font-size: 3rem;
+            }
+
+            .chatbot-window {
+                width: 300px;
+                height: 400px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-background"></div>
+
+    <!-- Circuit Lines -->
+    <div class="circuit-lines">
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+    </div>
+
+    <!-- Enhanced Floating STEM Elements -->
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 5%; animation-delay: 0s;">🧬</div>
+        <div class="floating-element" style="left: 15%; animation-delay: -2s;">⚛</div>
+        <div class="floating-element" style="left: 25%; animation-delay: -4s;">🔬</div>
+        <div class="floating-element" style="left: 35%; animation-delay: -6s;">🧪</div>
+        <div class="floating-element" style="left: 45%; animation-delay: -8s;">⚙</div>
+        <div class="floating-element" style="left: 55%; animation-delay: -10s;">💡</div>
+        <div class="floating-element" style="left: 65%; animation-delay: -12s;">🔭</div>
+        <div class="floating-element" style="left: 75%; animation-delay: -14s;">📐</div>
+        <div class="floating-element" style="left: 85%; animation-delay: -16s;">∑</div>
+        <div class="floating-element" style="left: 95%; animation-delay: -18s;">π</div>
+        <div class="floating-element" style="left: 10%; animation-delay: -1s;">∞</div>
+        <div class="floating-element" style="left: 20%; animation-delay: -3s;">△</div>
+        <div class="floating-element" style="left: 30%; animation-delay: -5s;">∮</div>
+        <div class="floating-element" style="left: 40%; animation-delay: -7s;">∫</div>
+        <div class="floating-element" style="left: 50%; animation-delay: -9s;">🎯</div>
+        <div class="floating-element" style="left: 60%; animation-delay: -11s;">🚀</div>
+        <div class="floating-element" style="left: 70%; animation-delay: -13s;">🔋</div>
+        <div class="floating-element" style="left: 80%; animation-delay: -15s;">💻</div>
+        <div class="floating-element" style="left: 90%; animation-delay: -17s;">🌐</div>
+    </div>
+
+    <!-- Enhanced DNA Helix -->
+    <div class="dna-helix">
+        <div class="dna-strand"></div>
+        <div class="dna-strand"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <span>X</span>Shala
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" class="english">Home</a><a href="#" class="hindi">होम</a><a href="#" class="marathi">होम</a></li>
+                <li><a href="#" class="english">Programs</a><a href="#" class="hindi">कार्यक्रम</a><a href="#" class="marathi">कार्यक्रम</a></li>
+                <li><a href="#" class="english">About</a><a href="#" class="hindi">हमारे बारे में</a><a href="#" class="marathi">आमच्या बद्दल</a></li>
+                <li><a href="#" class="english">Contact</a><a href="#" class="hindi">संपर्क</a><a href="#" class="marathi">संपर्क</a></li>
+            </ul>
+                <button class="language-btn active" onclick="setLanguage('english')">EN</button>
+                <button class="language-btn" onclick="setLanguage('hindi')">हि</button>
+                <button class="language-btn" onclick="setLanguage('marathi')">म</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    <span class="english">Welcome to XShala</span>
+                    <span class="hindi">XShala में आपका स्वागत है</span>
+                    <span class="marathi">XShala मध्ये आपले स्वागत आहे</span>
+                </h1>
+                <p>
+                    <span class="english">Empowering Rural Education Through STEM, Career Guidance, and Skill Development</span>
+                    <span class="hindi">STEM, करियर मार्गदर्शन और कौशल विकास के माध्यम से ग्रामीण शिक्षा को सशक्त बनाना</span>
+                    <span class="marathi">STEM, करिअर मार्गदर्शन आणि कौशल्य विकासाद्वारे ग्रामीण शिक्षण सशक्त करणे</span>
+                </p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary">
+                        <span class="english">Explore Programs</span>
+                        <span class="hindi">कार्यक्रम देखें</span>
+                        <span class="marathi">कार्यक्रम पहा</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        <span class="english">Get Started</span>
+                        <span class="hindi">शुरू करें</span>
+                        <span class="marathi">सुरुवात करा</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="stem-info">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="english">What is STEM?</span>
+                    <span class="hindi">STEM क्या है?</span>
+                    <span class="marathi">STEM म्हणजे काय?</span>
+                </h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #cccccc; margin-bottom: 2rem;">
+                    <span class="english">Science, Technology, Engineering, and Mathematics - the foundation of innovation and progress</span>
+                    <span class="hindi">विज्ञान, प्रौद्योगिकी, इंजीनियरिंग और गणित - नवाचार और प्रगति की आधारशिला</span>
+                    <span class="marathi">विज्ञान, तंत्रज्ञान, अभियांत्रिकी आणि गणित - नवकल्पना आणि प्रगतीचा पाया</span>
+                </p>
+
+                <h3 class="section-title" style="font-size: 2rem; margin-top: 3rem;">
+                    <span class="english">Benefits of STEM Education</span>
+                    <span class="hindi">STEM शिक्षा के फायदे</span>
+                    <span class="marathi">STEM शिक्षणाचे फायदे</span>
+                </h3>
+
+                <div class="stem-benefits">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🧠</div>
+                        <h3>
+                            <span class="english">Critical Thinking</span>
+                            <span class="hindi">आलोचनात्मक सोच</span>
+                            <span class="marathi">गंभीर विचार</span>
+                        </h3>
+                        <p>
+                            <span class="english">Learn to analyze problems and find creative solutions</span>
+                            <span class="hindi">समस्याओं का विश्लेषण करना और रचनात्मक समाधान खोजना सीखें</span>
+                            <span class="marathi">समस्यांचे विश्लेषण करा आणि सर्जनशील उपाय शोधा</span>
+                        </p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💡</div>
+                        <h3>
+                            <span class="english">Innovation</span>
+                            <span class="hindi">नवाचार</span>
+                            <span class="marathi">नवकल्पना</span>
+                        </h3>
+                        <p>
+                            <span class="english">Develop new ideas and technologies for the future</span>
+                            <span class="hindi">भविष्य के लिए नए विचार और प्रौद्योगिकी विकसित करें</span>
+                            <span class="marathi">भविष्यासाठी नवीन कल्पना आणि तंत्रज्ञान विकसित करा</span>
+                        </p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🤝</div>
+                        <h3>
+                            <span class="english">Collaboration</span>
+                            <span class="hindi">सहयोग</span>
+                            <span class="marathi">सहकार्य</span>
+                        </h3>
+                        <p>
+                            <span class="english">Work together to solve complex challenges</span>
+                            <span class="hindi">जटिल चुनौतियों को हल करने के लिए एक साथ काम करें</span>
+                            <span class="marathi">जटिल आव्हाने सोडवण्यासाठी एकत्र काम करा</span>
+                        </p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌍</div>
+                        <h3>
+                            <span class="english">Real-World Applications</span>
+                            <span class="hindi">वास्तविक जगत के अनुप्रयोग</span>
+                            <span class="marathi">वास्तविक जगातील उपयोग</span>
+                        </h3>
+                        <p>
+                            <span class="english">Apply knowledge to solve actual problems in society</span>
+                            <span class="hindi">समाज की वास्तविक समस्याओं को हल करने के लिए ज्ञान का उपयोग करें</span>
+                            <span class="marathi">समाजातील वास्तविक समस्या सोडवण्यासाठी ज्ञान वापरा</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="services">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="english">Our Programs</span>
+                    <span class="hindi">हमारे कार्यक्रम</span>
+                    <span class="marathi">आमचे कार्यक्रम</span>
+                </h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔬</div>
+                        <h3>
+                            <span class="english">STEM Awareness Programs</span>
+                            <span class="hindi">STEM जागरूकता कार्यक्रम</span>
+                            <span class="marathi">STEM जागरुकता कार्यक्रम</span>
+                        </h3>
+                        <ul class="english">
+                            <li><strong>✓ Interactive workshops in rural schools</strong></li>
+                            <li><strong>✓ Hands-on STEM learning kits</strong></li>
+                            <li><strong>✓ 3D printing and CAD software training</strong></li>
+                        </ul>
+                        <ul class="hindi">
+                            <li><strong>✓ ग्रामीण स्कूलों में इंटरैक्टिव कार्यशालाएं</strong></li>
+                            <li><strong>✓ व्यावहारिक STEM सीखने की किट</strong></li>
+                            <li><strong>✓ 3D प्रिंटिंग और CAD सॉफ्टवेयर प्रशिक्षण</strong></li>
+                        </ul>
+                        <ul class="marathi">
+                            <li><strong>✓ ग्रामीण शाळांमध्ये संवादी कार्यशाळा</strong></li>
+                            <li><strong>✓ व्यावहारिक STEM शिकण्याचे किट</strong></li>
+                            <li><strong>✓ 3D प्रिंटिंग आणि CAD सॉफ्टवेअर प्रशिक्षण</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="service-card">
+                        <div class="service-icon">🎓</div>
+                        <h3>
+                            <span class="english">Career & Exam Guidance</span>
+                            <span class="hindi">करियर और परीक्षा मार्गदर्शन</span>
+                            <span class="marathi">करिअर आणि परीक्षा मार्गदर्शन</span>
+                        </h3>
+                        <ul class="english">
+                            <li><strong>✓ JEE, NEET, UPSC, MPSC guidance sessions</strong></li>
+                            <li><strong>✓ English and communication skill programs</strong></li>
+                            <li><strong>✓ Resume writing and job portal assistance</strong></li>
+                        </ul>
+                        <ul class="hindi">
+                            <li><strong>✓ JEE, NEET, UPSC, MPSC मार्गदर्शन सत्र</strong></li>
+                            <li><strong>✓ अंग्रेजी और संचार कौशल कार्यक्रम</strong></li>
+                            <li><strong>✓ रेज़्यूमे लेखन और जॉब पोर्टल सहायता</strong></li>
+                        </ul>
+                        <ul class="marathi">
+                            <li><strong>✓ JEE, NEET, UPSC, MPSC मार्गदर्शन सत्र</strong></li>
+                            <li><strong>✓ इंग्रजी आणि संवाद कौशल्य कार्यक्रम</strong></li>
+                            <li><strong>✓ रेझ्युमे लेखन आणि जॉब पोर्टल मदत</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">
+                    <span class="english">Why Choose XShala?</span>
+                    <span class="hindi">XShala क्यों चुनें?</span>
+                    <span class="marathi">XShala का निवडायचे?</span>
+                </h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🌟</div>
+                        <h3>
+                            <span class="english">Quality Education</span>
+                            <span class="hindi">गुणवत्तापूर्ण शिक्षा</span>
+                            <span class="marathi">गुणवत्तापूर्ण शिक्षण</span>
+                        </h3>
+                        <p>
+                            <span class="english">Expert-designed programs for comprehensive learning</span>
+                            <span class="hindi">व्यापक सीखने के लिए विशेषज्ञ-डिज़ाइन कार्यक्रम</span>
+                            <span class="marathi">व्यापक शिकण्यासाठी तज्ञ-डिझाइन कार्यक्रम</span>
+                        </p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <h3>
+                            <span class="english">Rural Focus</span>
+                            <span class="hindi">ग्रामीण फोकस</span>
+                            <span class="marathi">ग्रामीण लक्ष</span>
+                        </h3>
+                        <p>
+                            <span class="english">Specially designed for rural communities</span>
+                            <span class="hindi">ग्रामीण समुदायों के लिए विशेष रूप से डिज़ाइन</span>
+                            <span class="marathi">ग्रामीण समुदायांसाठी विशेष डिझाइन</span>
+                        </p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💻</div>
+                        <h3>
+                            <span class="english">Modern Technology</span>
+                            <span class="hindi">आधुनिक तकनीक</span>
+                            <span class="marathi">आधुनिक तंत्रज्ञान</span>
+                        </h3>
+                        <p>
+                            <span class="english">Latest technology meets traditional values</span>
+                            <span class="hindi">नवीनतम तकनीक पारंपरिक मूल्यों से मिलती है</span>
+                            <span class="marathi">नवीनतम तंत्रज्ञान पारंपरिक मूल्यांशी मिळते</span>
+                        </p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🤝</div>
+                        <h3>
+                            <span class="english">Community Support</span>
+                            <span class="hindi">सामुदायिक सहायता</span>
+                            <span class="marathi">समुदायिक पाठिंबा</span>
+                        </h3>
+                        <p>
+                            <span class="english">Building stronger educational communities</span>
+                            <span class="hindi">मजबूत शैक्षिक समुदाय का निर्माण</span>
+                            <span class="marathi">मजबूत शैक्षणिक समुदाय तयार करणे</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>
+                        <span class="english">Quick Links</span>
+                        <span class="hindi">त्वरित लिंक</span>
+                        <span class="marathi">द्रुत लिंक</span>
+                    </h3>
+                    <ul>
+                        <li><a href="#" class="english">Programs</a><a href="#" class="hindi">कार्यक्रम</a><a href="#" class="marathi">कार्यक्रम</a></li>
+                        <li><a href="#" class="english">About</a><a href="#" class="hindi">हमारे बारे में</a><a href="#" class="marathi">आमच्या बद्दल</a></li>
+                        <li><a href="#" class="english">Resources</a><a href="#" class="hindi">संसाधन</a><a href="#" class="marathi">संसाधने</a></li>
+                        <li><a href="#" class="english">Contact</a><a href="#" class="hindi">संपर्क</a><a href="#" class="marathi">संपर्क</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <span class="english">Programs</span>
+                        <span class="hindi">कार्यक्रम</span>
+                        <span class="marathi">कार्यक्रम</span>
+                    </h3>
+                    <ul>
+                        <li><a href="#" class="english">STEM Workshops</a><a href="#" class="hindi">STEM कार्यशालाएं</a><a href="#" class="marathi">STEM कार्यशाळा</a></li>
+                        <li><a href="#" class="english">Career Guidance</a><a href="#" class="hindi">करियर मार्गदर्शन</a><a href="#" class="marathi">करिअर मार्गदर्शन</a></li>
+                        <li><a href="#" class="english">Exam Preparation</a><a href="#" class="hindi">परीक्षा तैयारी</a><a href="#" class="marathi">परीक्षा तयारी</a></li>
+                        <li><a href="#" class="english">Skill Development</a><a href="#" class="hindi">कौशल विकास</a><a href="#" class="marathi">कौशल्य विकास</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>
+                        <span class="english">Contact Info</span>
+                        <span class="hindi">संपर्क जानकारी</span>
+                        <span class="marathi">संपर्क माहिती</span>
+                    </h3>
+                    <p>
+                        <span class="english">Email: info@xshala.edu</span>
+                        <span class="hindi">ईमेल: info@xshala.edu</span>
+                        <span class="marathi">ईमेल: info@xshala.edu</span>
+                    </p>
+                    <p>
+                        <span class="english">Phone: +91 98765 43210</span>
+                        <span class="hindi">फ़ोन: +91 98765 43210</span>
+                        <span class="marathi">फोन: +91 98765 43210</span>
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>
+                    <span class="english">&copy; 2025 XShala. All rights reserved. Empowering education for all.</span>
+                    <span class="hindi">&copy; 2025 XShala. सभी अधिकार सुरक्षित। सभी के लिए शिक्षा को सशक्त बनाना।</span>
+                    <span class="marathi">&copy; 2025 XShala. सर्व हक्क राखीव। सर्वांसाठी शिक्षण सशक्त करणे।</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">🤖</button>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <span class="english">AI Assistant</span>
+                <span class="hindi">AI सहायक</span>
+                <span class="marathi">AI सहाय्यक</span>
+                <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+            </div>
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="message bot">
+                    <span class="english">Hello! I'm your AI assistant. I can help you in English, Hindi, or Marathi. Ask me anything!</span>
+                    <span class="hindi">नमस्ते! मैं आपका AI सहायक हूं। मैं अंग्रेजी, हिंदी या मराठी में आपकी मदद कर सकता हूं। मुझसे कुछ भी पूछें!</span>
+                    <span class="marathi">नमस्कार! मी तुमचा AI सहाय्यक आहे. मी इंग्रजी, हिंदी किंवा मराठीमध्ये तुमची मदत करू शकतो. मला काहीही विचारा!</span>
+                </div>
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chatInput" placeholder="Type your message...">
+                <button class="voice-btn" id="voiceBtn" onclick="toggleVoiceRecording()">🎤</button>
+                <button class="send-btn" onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentLanguage = 'english';
+        let isRecording = false;
+        let recognition;
+        
+        // Language switching functionality
+        function setLanguage(lang) {
+            currentLanguage = lang;
+            document.body.className = '';
+            if (lang !== 'english') {
+                document.body.classList.add('lang-' + lang);
+            }
+        }
+
+        // Cycle through languages with single button
+        function cycleLanguage() {
+            if (currentLanguage === 'english') {
+                setLanguage('hindi');
+            } else if (currentLanguage === 'hindi') {
+                setLanguage('marathi');
+            } else {
+                setLanguage('english');
+            }
+        }
+
+        // Chatbot functionality
+        function toggleChatbot() {
+            const chatWindow = document.getElementById('chatbotWindow');
+            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+                chatWindow.style.display = 'flex';
+            } else {
+                chatWindow.style.display = 'none';
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (message) {
+                addMessage(message, 'user');
+                input.value = '';
+                
+                // Simulate AI response
+                setTimeout(() => {
+                    const response = generateAIResponse(message);
+                    addMessage(response, 'bot');
+                }, 1000);
+            }
+        }
+
+        function addMessage(text, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = message ${type};
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function generateAIResponse(message) {
+            const responses = {
+                english: [
+                    "That's a great question! STEM education helps develop critical thinking and problem-solving skills.",
+                    "I'd be happy to help you with that. XShala offers comprehensive programs for rural education.",
+                    "Great! Our programs include hands-on workshops, career guidance, and skill development.",
+                    "Absolutely! We focus on making STEM education accessible to rural communities."
+                ],
+                hindi: [
+                    "यह एक बढ़िया प्रश्न है! STEM शिक्षा आलोचनात्मक सोच और समस्या-समाधान कौशल विकसित करने में मदद करती है।",
+                    "मुझे आपकी मदद करने में खुशी होगी। XShala ग्रामीण शिक्षा के लिए व्यापक कार्यक्रम प्रदान करता है।",
+                    "बहुत बढ़िया! हमारे कार्यक्रमों में व्यावहारिक कार्यशालाएं, करियर मार्गदर्शन और कौशल विकास शामिल है।",
+                    "बिल्कुल! हम ग्रामीण समुदायों के लिए STEM शिक्षा को सुलभ बनाने पर ध्यान देते हैं।"
+                ],
+                marathi: [
+                    "हा एक उत्तम प्रश्न आहे! STEM शिक्षण गंभीर विचार आणि समस्या-निराकरण कौशल्ये विकसित करण्यास मदत करते।",
+                    "मला तुमची मदत करण्यात आनंद होईल। XShala ग्रामीण शिक्षणासाठी व्यापक कार्यक्रम देते।",
+                    "उत्तम! आमच्या कार्यक्रमांमध्ये व्यावहारिक कार्यशाळा, करिअर मार्गदर्शन आणि कौशल्य विकास समाविष्ट आहे।",
+                    "नक्कीच! आम्ही ग्रामीण समुदायांसाठी STEM शिक्षण सुलभ करण्यावर लक्ष केंद्रित करतो।"
+                ]
+            };
+            
+            const langResponses = responses[currentLanguage] || responses.english;
+            return langResponses[Math.floor(Math.random() * langResponses.length)];
+        }
+
+        // Voice recognition functionality
+        function initializeVoiceRecognition() {
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                
+                recognition.onstart = function() {
+                    isRecording = true;
+                    document.getElementById('voiceBtn').classList.add('recording');
+                };
+                
+                recognition.onresult = function(event) {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('chatInput').value = transcript;
+                };
+                
+                recognition.onend = function() {
+                    isRecording = false;
+                    document.getElementById('voiceBtn').classList.remove('recording');
+                };
+                
+                recognition.onerror = function(event) {
+                    console.error('Speech recognition error:', event.error);
+                    isRecording = false;
+                    document.getElementById('voiceBtn').classList.remove('recording');
+                };
+            }
+        }
+
+        function toggleVoiceRecording() {
+            if (!recognition) {
+                alert('Voice recognition not supported in your browser');
+                return;
+            }
+            
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                // Set language for recognition
+                if (currentLanguage === 'hindi') {
+                    recognition.lang = 'hi-IN';
+                } else if (currentLanguage === 'marathi') {
+                    recognition.lang = 'mr-IN';
+                } else {
+                    recognition.lang = 'en-US';
+                }
+                recognition.start();
+            }
+        }
+
+        // Enter key support for chat input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('chatInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            initializeVoiceRecognition();
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Add animation on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe service cards and feature items
+            document.querySelectorAll('.service-card, .feature-item, .benefit-card').forEach(item => {
+                item.style.opacity = '0';
+                item.style.transform = 'translateY(30px)';
+                item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(item);
+            });
+        });
+    </script>
+</body>
+</html>
