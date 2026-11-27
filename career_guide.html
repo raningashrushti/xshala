@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career & Exam Guidance | Xshala</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /*
+         * =================================================================
+         * ENHANCED CSS FOR CONTRAST AND DARK/LIGHT THEME VISIBILITY
+         * =================================================================
+         */
+
+        :root {
+            /* Color Palette - Day & Night (DARK MODE DEFAULTS) */
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a2e;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --accent-cyan: #00ffff;
+            --accent-magenta: #ff00ff;
+            --accent-green: #00ff00;
+            --card-bg: rgba(0, 0, 0, 0.7);
+            --card-border-cyan: rgba(0, 255, 255, 0.3);
+            --card-border-magenta: rgba(255, 0, 255, 0.3);
+            --card-border-green: rgba(0, 255, 0, 0.3);
+            --logo-text-shadow: 0 0 20px var(--accent-cyan);
+            --logo-accent-color: var(--accent-cyan);
+            --header-bg: rgba(10, 10, 10, 0.95);
+            --header-border: 2px solid var(--accent-cyan);
+            --footer-bg: rgba(0, 0, 0, 0.95);
+            --btn-primary-start: #00ffff;
+            --btn-primary-end: #0080ff;
+        }
+
+        /* Day Theme - FIXED TEXT VISIBILITY & CONTRAST */
+        :root.theme-day {
+            --primary-bg: #f0f2f5;
+            --secondary-bg: #e2e4e8;
+            --text-primary: #141313; /* Primary text is dark (HIGH CONTRAST) */
+            --text-secondary: #333333; /* Secondary text is dark grey (HIGH CONTRAST) */
+            --accent-cyan: #0080ff; /* Darker blue accent for better light mode visibility */
+            --accent-magenta: #cc00cc;
+            --accent-green: #008800;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-border-cyan: rgba(0, 128, 255, 0.5);
+            --card-border-magenta: rgba(204, 0, 204, 0.5);
+            --card-border-green: rgba(0, 136, 0, 0.5);
+            --logo-text-shadow: none;
+            --logo-accent-color: #0080ff;
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --header-border: 2px solid var(--accent-cyan);
+            --footer-bg: rgba(255, 255, 255, 0.95);
+            --btn-primary-start: #0080ff;
+            --btn-primary-end: #0055aa;
+        }
+
+        /* ===================================
+           Global & Utility
+           ===================================
+        */
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          line-height: 1.6;
+          color: var(--text-primary);
+          background: var(--primary-bg);
+          transition: background 0.5s ease, color 0.5s ease;
+          position: relative;
+          overflow-x: hidden;
+        }
+
+        .container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          position: relative;
+          z-index: 1;
+        }
+
+        section {
+          padding: 80px 0;
+          position: relative;
+          z-index: 2;
+        }
+
+        h1, h2, h3 {
+          font-weight: 600;
+          color: var(--text-primary);
+        }
+
+        p {
+            line-height: 1.6;
+            color: var(--text-secondary);
+            opacity: 0.9;
+        }
+        ul.list-style-none {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.list-style-none li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Buttons */
+        .btn {
+          display: inline-block;
+          padding: 1.2rem 2.5rem;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: 600;
+          transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+          border: none;
+          cursor: pointer;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        /* FIX 2: Ensure primary button text remains black for contrast */
+        .btn-primary {
+          background: linear-gradient(45deg, var(--btn-primary-start), var(--btn-primary-end));
+          color: #000; 
+          box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+        }
+
+        .theme-day .btn-primary:hover {
+            box-shadow: 0 15px 35px rgba(0, 128, 255, 0.4);
+        }
+
+        /* FIX 3: Ensure secondary button text has sufficient contrast in Day Mode */
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 2px solid var(--accent-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            transform: translateY(-5px);
+        }
+
+        .mode-toggle-btn, .language-btn {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            color: #000;
+            border: none;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mode-toggle-btn {
+            font-size: 1.2rem;
+            padding: 0.4rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-primary);
+            box-shadow: none;
+        }
+
+        .mode-toggle-btn:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .language-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent-cyan);
+            color: var(--text-primary);
+        }
+
+        .theme-day .language-btn {
+            background: rgba(0, 0, 0, 0.1);
+            color: var(--text-primary);
+        }
+
+        .language-btn.active {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            color: #000;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        .theme-day .language-btn.active {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            color: #000;
+        }
+
+
+        /* ===================================
+           Header & Navigation
+           ===================================
+        */
+        header {
+          background: var(--header-bg);
+          backdrop-filter: blur(15px);
+          position: sticky;
+          top: 0;
+          width: 100%;
+          z-index: 1000;
+          padding: 15px 0;
+          border-bottom: 2px solid var(--header-border);
+          transition: background-color 0.5s ease, border-bottom 0.5s ease;
+        }
+
+        header .container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .logo {
+          font-size: 2.5rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          text-decoration: none;
+          text-shadow: var(--logo-text-shadow);
+        }
+
+        .logo span {
+          color: var(--logo-accent-color);
+          animation: neonPulse 2s ease-in-out infinite alternate;
+        }
+
+        .theme-day .logo span {
+            animation: none;
+        }
+
+        @keyframes neonPulse {
+            0% { text-shadow: 0 0 20px var(--accent-cyan); }
+            100% { text-shadow: 0 0 30px var(--accent-cyan), 0 0 40px var(--accent-cyan); }
+        }
+
+        .nav-links {
+          list-style: none;
+          display: flex;
+          gap: 30px;
+        }
+
+        /* FIX 1: Ensure anchor links in header use primary text color in light mode */
+        .nav-links a {
+          color: var(--text-primary);
+          text-decoration: none;
+          font-weight: 500;
+          position: relative;
+          transition: color 0.3s ease;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+        }
+
+        .nav-links a:hover {
+          color: var(--accent-cyan);
+          transform: translateY(-2px);
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /* ===================================
+           Animated Background & Effects
+           ===================================
+        */
+        .animated-background {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+          background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+          background-size: 400% 400%;
+          animation: gradientShift 20s ease infinite;
+        }
+
+        .theme-day .animated-background {
+            background: linear-gradient(135deg, #f0f2f5 0%, #e2e4e8 25%, #d1d4d4 50%, #c1c1c1 75%, #b1b1b1 100%);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            color: rgba(0, 255, 255, 0.3);
+            font-size: 4rem;
+            animation: float 25s infinite linear;
+            text-shadow: 0 0 20px currentColor;
+        }
+
+        /* Day Mode Floating Elements */
+        .theme-day .floating-element {
+            color: rgba(0, 128, 255, 0.1);
+            text-shadow: none;
+        }
+
+        .floating-element:nth-child(odd) {
+            animation-direction: reverse;
+            color: rgba(255, 0, 255, 0.3);
+        }
+
+        .theme-day .floating-element:nth-child(odd) {
+            color: rgba(204, 0, 204, 0.1);
+        }
+
+        .floating-element:nth-child(3n) {
+            color: rgba(0, 255, 0, 0.3);
+        }
+
+        .theme-day .floating-element:nth-child(3n) {
+            color: rgba(0, 136, 0, 0.1);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(90vh) rotate(36deg) scale(0.7);
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) scale(1);
+            }
+            90% {
+                opacity: 1;
+                transform: translateY(10vh) rotate(324deg) scale(0.7);
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        /* Neon Circuit Lines */
+        .circuit-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+            height: 2px;
+            animation: circuitFlow 8s infinite;
+        }
+
+        /* Circuit line color change for Day Mode for subtlety and contrast */
+        .theme-day .circuit-line {
+            background: linear-gradient(90deg, transparent, rgba(0, 128, 255, 0.5), transparent) !important;
+        }
+        .circuit-line:nth-child(2) {
+            background: linear-gradient(90deg, transparent, var(--accent-magenta), transparent);
+        }
+        .theme-day .circuit-line:nth-child(2) {
+            background: linear-gradient(90deg, transparent, rgba(204, 0, 204, 0.5), transparent) !important;
+        }
+        .circuit-line:nth-child(3) {
+            background: linear-gradient(90deg, transparent, var(--accent-green), transparent);
+        }
+        .theme-day .circuit-line:nth-child(3) {
+            background: linear-gradient(90deg, transparent, rgba(0, 136, 0, 0.5), transparent) !important;
+        }
+
+        @keyframes circuitFlow {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .dna-helix {
+            position: fixed;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 150px;
+            height: 400px;
+            z-index: -1;
+        }
+
+        .dna-strand {
+            position: absolute;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-magenta));
+            border-radius: 3px;
+            animation: dnaRotate 12s infinite linear;
+            box-shadow: 0 0 20px currentColor;
+        }
+
+        .theme-day .dna-strand {
+            box-shadow: none;
+        }
+
+        .dna-strand:nth-child(1) {
+            left: 30px;
+            transform-origin: center;
+        }
+
+        .dna-strand:nth-child(2) {
+            right: 30px;
+            animation-delay: -6s;
+            background: linear-gradient(180deg, var(--accent-magenta), var(--accent-green));
+        }
+
+        @keyframes dnaRotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        /* ===================================
+           Hero Section - FIXED TEXT VISIBILITY
+           ===================================
+        */
+        .hero {
+          text-align: center;
+          padding: 150px 0;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+
+        .hero h1 {
+          font-size: 4rem;
+          margin-bottom: 20px;
+          /* Dark Mode: Gradient Text */
+          background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          color: transparent;
+          animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* FIX 4: Explicitly disable gradient and use solid dark color for high contrast in light mode */
+        .theme-day .hero h1,
+        .theme-day .section-title,
+        .theme-day .service-card h3 {
+          animation: none !important;
+          background: none !important;
+          -webkit-background-clip: initial !important;
+          -webkit-text-fill-color: initial !important;
+          background-clip: initial !important;
+          color: var(--text-primary) !important;
+          text-shadow: none !important;
+        }
+
+        @keyframes titleGlow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.3); text-shadow: 0 0 30px rgba(0, 255, 255, 0.5); }
+        }
+
+        .hero p {
+          font-size: 1.4rem;
+          max-width: 600px;
+          margin: 0 auto;
+          margin-bottom: 3rem;
+          animation: fadeInUp 1s ease-out 0.5s both;
+          color: var(--text-secondary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 1s both;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border: 1px solid var(--accent-cyan);
+            border-radius: 10px;
+            text-align: center;
+            transition: .3s;
+        }
+
+        .card:hover {
+            background: rgba(0,255,255,0.1);
+            transform: translateY(-8px);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            color: var(--text-primary);
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===================================
+           Services/Programs Section
+           ===================================
+        */
+        .services-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 30px;
+          margin-top: 50px;
+        }
+
+        .service-card {
+          background: var(--card-bg);
+          backdrop-filter: blur(10px);
+          border-radius: 20px;
+          padding: 40px;
+          text-align: center;
+          box-shadow: 0 8px 32px 0 rgba(0, 255, 255, 0.1);
+          transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.5s ease, border 0.5s ease;
+          border: 1px solid var(--card-border-cyan);
+        }
+
+        /* FIX 5: Explicitly define Day Mode card background for non-opacity contrast issues */
+        .theme-day .service-card {
+            background: var(--card-bg);
+        }
+
+        .service-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0, 255, 255, 0.2);
+        }
+
+        .theme-day .service-card:hover {
+          box-shadow: 0 20px 40px rgba(0, 128, 255, 0.2);
+        }
+
+        .service-card h3 {
+          font-size: 1.8rem;
+          margin-bottom: 15px;
+          /* Dark Mode: Gradient Text */
+          background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          color: transparent;
+        }
+
+        .service-card p {
+          margin-bottom: 25px;
+          color: var(--text-secondary);
+        }
+        .service-card ul {
+            text-align: left;
+        }
+
+        /* ===================================
+           About/Features Section
+           ===================================
+        */
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            /* Dark Mode: Gradient Text */
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        .features p {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+
+        /* ===================================
+           New Section for Index Page
+           ==================================
+        */
+        .new-features {
+          background: var(--card-bg);
+          backdrop-filter: blur(10px);
+          padding: 4rem 0;
+          margin: 2rem 0;
+          border-radius: 20px;
+          border: 1px solid var(--card-border-green);
+        }
+
+        .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 2rem;
+          margin-top: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            border: 1px solid var(--card-border-green);
+            transition: all 0.3s ease;
+        }
+
+        .theme-day .feature-item {
+            background: rgba(0, 136, 0, 0.1);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 0, 0.2);
+            background: rgba(0, 255, 0, 0.2);
+        }
+
+        .theme-day .feature-item:hover {
+            box-shadow: 0 20px 40px rgba(0, 136, 0, 0.2);
+            background: rgba(0, 136, 0, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+       /* Form Styling */
+        #admission-form-container,
+        #admission-form-container input,
+        #admission-form-container textarea,
+        #admission-form-container select {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid var(--accent-cyan);
+            width: 100%;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Individual Input/Select/Textarea Styling */
+        #admission-form-container input,
+        #admission-form-container textarea,
+        #admission-form-container select {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border-cyan);
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+
+        /* FIX 6: Ensure form elements are dark text on light background in Day Mode */
+        .theme-day #admission-form-container input,
+        .theme-day #admission-form-container textarea,
+        .theme-day #admission-form-container select {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--card-border-cyan);
+            color: var(--text-primary);
+        }
+
+        /* Focus Styling */
+        #admission-form-container input:focus,
+        #admission-form-container textarea:focus,
+        #admission-form-container select:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--accent-cyan);
+            border-color: var(--accent-magenta);
+        }
+
+        /* Placeholder Styling */
+        #admission-form-container ::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        /* Select Option Styling: Multilingual Fix (CSS only) */
+        #admission-form-container select {
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+        }
+
+        .theme-day #admission-form-container select {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* Force select to display multilingual text properly */
+        #admission-form-container select {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            direction: ltr;
+            text-align: left;
+            text-align-last: left;
+            background-color: var(--secondary-bg);
+            color: var(--text-primary);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--card-border-cyan);
+        }
+
+        /* Dark/light theme handling */
+        .theme-day #admission-form-container select {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+        }
+
+        /* Optional: Fix for some browsers cutting off option text */
+        #admission-form-container select option {
+            padding: 0.5rem 1rem;
+            white-space: normal;
+        }
+
+
+        /* ===================================
+           Footer
+           ===================================
+        */
+        footer {
+          background: var(--footer-bg);
+          backdrop-filter: blur(10px);
+          padding: 40px 0;
+          text-align: center;
+          border-top: 2px solid var(--accent-cyan);
+          transition: background-color 0.5s ease, border-top 0.5s ease;
+        }
+
+        footer h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        footer p {
+            margin-bottom: 10px;
+            opacity: 0.7;
+            color: var(--text-secondary);
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            border-top: 1px solid var(--card-border-cyan);
+            padding-top: 20px;
+        }
+
+        /* ===================================
+           Language-specific visibility
+           ===================================
+        */
+        /* Default Hide for non-active languages */
+        .hindi, .marathi { display: none; }
+
+        /* Core multilingual visibility control */
+        body.lang-english .english,
+        body.lang-hindi .hindi,
+        body.lang-marathi .marathi {
+            display: inline;
+        }
+
+        body.lang-english .hindi, body.lang-english .marathi,
+        body.lang-hindi .english, body.lang-hindi .marathi,
+        body.lang-marathi .english, body.lang-marathi .hindi {
+            display: none;
+        }
+
+        /* Fix for select dropdown text: Hide all spans inside options by default, show only the one matching body class */
+        .admission-form-container select option span {
+            display: none;
+        }
+        body.lang-english .admission-form-container select option .english,
+        body.lang-hindi .admission-form-container select option .hindi,
+        body.lang-marathi .admission-form-container select option .marathi {
+            display: inline;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 0.9;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Career Page Specific Styles (No change needed here) */
+        .exam-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+        }
+
+        .exam-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--card-border-cyan);
+        }
+
+        .exam-table th {
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            color: #000;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .exam-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--card-border-cyan);
+            color: var(--text-secondary);
+        }
+
+        .exam-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .exam-table tr:nth-child(even) {
+            background: rgba(0, 255, 255, 0.05);
+        }
+
+        .exam-table tr:hover {
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .exam-table a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .exam-table a:hover {
+            text-decoration: underline;
+        }
+
+        .pathway-icon, .resource-icon, .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+
+        .mentor-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--accent-cyan);
+        }
+
+        .testimonial {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--card-border-magenta);
+            margin-bottom: 2rem;
+        }
+
+        .testimonial p {
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+
+        .event-date {
+            background: linear-gradient(45deg, var(--accent-magenta), var(--accent-green));
+            color: #000;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body class="theme-dark lang-english">
+    <div class="animated-background"></div>
+
+    <div class="circuit-lines">
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+        <div class="circuit-line"></div>
+    </div>
+
+    <div class="floating-elements">
+        <div class="floating-element" style="left: 5%; animation-delay: 0s;">🧬</div>
+        <div class="floating-element" style="left: 15%; animation-delay: -2s;">⚛️</div>
+        <div class="floating-element" style="left: 25%; animation-delay: -4s;">🔬</div>
+        <div class="floating-element" style="left: 35%; animation-delay: -6s;">🧪</div>
+        <div class="floating-element" style="left: 45%; animation-delay: -8s;">⚙️</div>
+        <div class="floating-element" style="left: 55%; animation-delay: -10s;">💡</div>
+        <div class="floating-element" style="left: 65%; animation-delay: -12s;">🔭</div>
+        <div class="floating-element" style="left: 75%; animation-delay: -14s;">📐</div>
+        <div class="floating-element" style="left: 85%; animation-delay: -16s;">∑</div>
+        <div class="floating-element" style="left: 95%; animation-delay: -18s;">π</div>
+    </div>
+
+    <div class="dna-helix">
+        <div class="dna-strand"></div>
+        <div class="dna-strand"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">
+                <span>X</span>Shala
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html"><span class="english">Home</span><span class="hindi">होम</span><span class="marathi">मुख्यपृष्ठ</span></a></li>
+                <li><a href="#" class="active"><span class="english">Career Guidance</span><span class="hindi">करियर मार्गदर्शन</span><span class="marathi">करिअर मार्गदर्शन</span></a></li>
+                <li><a href="#"><span class="english">Exam Resources</span><span class="hindi">परीक्षा संसाधन</span><span class="marathi">परीक्षा संसाधने</span></a></li>
+                <li><a href="#"><span class="english">Mentorship</span><span class="hindi">मार्गदर्शन</span><span class="marathi">मार्गदर्शन</span></a></li>
+                <li><a href="#"><span class="english">Workshops</span><span class="hindi">कार्यशालाएं</span><span class="marathi">कार्यशाळा</span></a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="mode-toggle-btn" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="language-btn active" data-lang="english" onclick="switchLanguage('english')">ENG</button>
+                <button class="language-btn" data-lang="hindi" onclick="switchLanguage('hindi')">हिंदी</button>
+                <button class="language-btn" data-lang="marathi" onclick="switchLanguage('marathi')">मराठी</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1><span class="english">Career & Exam Guidance</span><span class="hindi">करियर और परीक्षा मार्गदर्शन</span><span class="marathi">करिअर आणि परीक्षा मार्गदर्शन</span></h1>
+            <p>
+                <span class="english">Empowering students to make informed career choices and achieve academic success through expert guidance and cutting-edge resources.</span>
+                <span class="hindi">विशेषज्ञ मार्गदर्शन और अत्याधुनिक संसाधनों के माध्यम से छात्रों को सूचित करियर विकल्प चुनने और शैक्षणिक सफलता प्राप्त करने के लिए सशक्त बनाना।</span>
+                <span class="marathi">तज्ञ मार्गदर्शन आणि अद्ययावत संसाधनांद्वारे विद्यार्थ्यांना योग्य करिअर निवडण्यास आणि शैक्षणिक यश मिळविण्यात मदत करणे.</span>
+            </p>
+            <div class="cta-buttons">
+                <a href="#pathways" class="btn btn-primary">
+                    <span class="english">Explore Career Paths</span>
+                    <span class="hindi">करियर पथ खोजें</span>
+                    <span class="marathi">करिअर मार्ग शोधा</span>
+                </a>
+                <a href="#admission-form-container" class="btn btn-secondary">
+                    <span class="english">Book a Session</span>
+                    <span class="hindi">एक सत्र बुक करें</span>
+                    <span class="marathi">एक सत्र बुक करा</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="features">
+                <h2 class="section-title">
+                    <span class="english">Your Pathway to Success</span>
+                    <span class="hindi">सफलता की ओर आपका मार्ग</span>
+                    <span class="marathi">यशाचा तुमचा मार्ग</span>
+                </h2>
+                <p>
+                    <span class="english">At Xshala, we help students discover the right career path through expert guidance, skill development, and personalized mentoring. Whether you're preparing for competitive exams or exploring career options, we've got you covered.</span>
+                    <span class="hindi">Xshala में, हम विशेषज्ञ मार्गदर्शन, कौशल विकास और व्यक्तिगत मेंटरिंग के माध्यम से छात्रों को सही करियर पथ खोजने में मदद करते हैं। चाहे आप प्रतियोगी परीक्षाओं की तैयारी कर रहे हों या करियर विकल्पों की तलाश कर रहे हों, हम आपके साथ हैं।</span>
+                    <span class="marathi">Xshala मध्ये, आम्ही तज्ञ मार्गदर्शन, कौशल्य विकास आणि वैयक्तिक मार्गदर्शनाद्वारे विद्यार्थ्यांना योग्य करिअर मार्ग शोधण्यात मदत करतो. तुम्ही स्पर्धा परीक्षांची तयारी करत असाल किंवा करिअरचे पर्याय शोधत असाल, आम्ही तुम्हाला मदत करू.</span>
+                </p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3><span class="english">Personalized Counseling</span><span class="hindi">व्यक्तिगत परामर्श</span><span class="marathi">वैयक्तिक समुपदेशन</span></h3>
+                    <p><span class="english">One-on-one sessions tailored to your strengths and interests with industry experts.</span><span class="hindi">उद्योग विशेषज्ञों के साथ आपकी ताकत और रुचियों के अनुरूप एक-पर-एक सत्र।</span><span class="marathi">उद्योग तज्ञांसह तुमच्या सामर्थ्य आणि आवडीनुसार तयार केलेले एक-ते-एक सत्र.</span></p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon">📊</div>
+                    <h3><span class="english">Exam Strategy Sessions</span><span class="hindi">परीक्षा रणनीति सत्र</span><span class="marathi">परीक्षा धोरण सत्रे</span></h3>
+                    <p><span class="english">Learn effective techniques and time management strategies to ace your exams.</span><span class="hindi">अपनी परीक्षाओं में सफल होने के लिए प्रभावी तकनीकें और समय प्रबंधन रणनीतियाँ सीखें।</span><span class="marathi">तुमच्या परीक्षांमध्ये यशस्वी होण्यासाठी प्रभावी तंत्र आणि वेळ व्यवस्थापन धोरणे शिका.</span></p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon">🗺️</div>
+                    <h3><span class="english">Career Roadmap Planning</span><span class="hindi">करियर रोडमैप योजना</span><span class="marathi">करिअर रोडमॅप नियोजन</span></h3>
+                    <p><span class="english">Create a step-by-step personalized plan to achieve your career goals.</span><span class="hindi">अपने करियर लक्ष्यों को प्राप्त करने के लिए चरण-दर-चरण व्यक्तिगत योजना बनाएं।</span><span class="marathi">तुमची करिअर उद्दिष्टे साध्य करण्यासाठी चरण-दर-चरण वैयक्तिक योजना तयार करा.</span></p>
+                </div>
+                <div class="service-card">
+                    <div class="feature-icon">💬</div>
+                    <h3><span class="english">Soft Skill Enhancement</span><span class="hindi">सॉफ्ट स्किल संवर्धन</span><span class="marathi">सॉफ्ट स्किल सुधारणा</span></h3>
+                    <p><span class="english">Develop communication, leadership, and interpersonal skills for success.</span><span class="hindi">सफलता के लिए संचार, नेतृत्व और पारस्परिक कौशल विकसित करें।</span><span class="marathi">यशासाठी संवाद, नेतृत्व आणि आंतरवैयक्तिक कौशल्ये विकसित करा.</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pathways" style="background: var(--secondary-bg);">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Career Pathways</span>
+                <span class="hindi">करियर पथ</span>
+                <span class="marathi">करिअर मार्ग</span>
+            </h2>
+            <p class="features">
+                <span class="english">Explore various career options and find the perfect path that matches your interests and skills.</span>
+                <span class="hindi">विभिन्न करियर विकल्पों का अन्वेषण करें और वह सही मार्ग खोजें जो आपकी रुचियों और कौशल से मेल खाता हो।</span>
+                <span class="marathi">विविध करिअर पर्याय शोधा आणि तुमच्या आवडी आणि कौशल्यांशी जुळणारा योग्य मार्ग निवडा.</span>
+            </p>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="pathway-icon">⚙️</div>
+                    <h3><span class="english">Engineering & Technology</span><span class="hindi">इंजीनियरिंग और प्रौद्योगिकी</span><span class="marathi">अभियांत्रिकी आणि तंत्रज्ञान</span></h3>
+                    <p><span class="english">JEE, MHT-CET, GATE, BITSAT and other engineering entrance exams.</span><span class="hindi">जेईई, एमएचटी-सीईटी, गेट, बिटसैट और अन्य इंजीनियरिंग प्रवेश परीक्षाएं।</span><span class="marathi">जेईई, एमएचटी-सीईटी, गेट, बिटसैट आणि इतर अभियांत्रिकी प्रवेश परीक्षा.</span></p>
+                    <a href="jee7.html" class="btn btn-secondary"><span class="english">Explore</span><span class="hindi">पता लगाएं</span><span class="marathi">शोधा</span></a>
+                </div>
+                <div class="service-card">
+                    <div class="pathway-icon">🩺</div>
+                    <h3><span class="english">Medical Sciences</span><span class="hindi">चिकित्सा विज्ञान</span><span class="marathi">वैद्यकीय विज्ञान</span></h3>
+                    <p><span class="english">NEET, AIIMS, JIPMER and other medical entrance examinations.</span><span class="hindi">नीट, एम्स, जिपमर और अन्य चिकित्सा प्रवेश परीक्षाएं।</span><span class="marathi">नीट, एम्स, जिपमर आणि इतर वैद्यकीय प्रवेश परीक्षा.</span></p>
+                    <a href="medical.html" class="btn btn-secondary"><span class="english">Explore</span><span class="hindi">पता लगाएं</span><span class="marathi">शोधा</span></a>
+                </div>
+                <div class="service-card">
+                    <div class="pathway-icon">🏛️</div>
+                    <h3><span class="english">Civil Services</span><span class="hindi">सिविल सेवा</span><span class="marathi">नागरी सेवा</span></h3>
+                    <p><span class="english">UPSC, MPSC, State PSCs and other government service exams.</span><span class="hindi">यूपीएससी, एमपीएससी, राज्य पीएससी और अन्य सरकारी सेवा परीक्षाएं।</span><span class="marathi">यूपीएससी, एमपीएससी, राज्य पीएससी आणि इतर सरकारी सेवा परीक्षा.</span></p>
+                    <a href="civil.html" class="btn btn-secondary"><span class="english">Explore</span><span class="hindi">पता लगाएं</span><span class="marathi">शोधा</span></a>
+                </div>
+                <div class="service-card">
+                    <div class="pathway-icon">📈</div>
+                    <h3><span class="english">Commerce & Management</span><span class="hindi">वाणिज्य और प्रबंधन</span><span class="marathi">वाणिज्य आणि व्यवस्थापन</span></h3>
+                    <p><span class="english">CA, CS, CMA, MBA, BBA and other commerce related careers.</span><span class="hindi">सीए, सीएस, सीएमए, एमबीए, बीबीए और अन्य वाणिज्य संबंधित करियर।</span><span class="marathi">सीए, सीएस, सीएमए, एमबीए, बीबीए आणि इतर वाणिज्य संबंधित करिअर.</span></p>
+                    <a href="commerce2.html" class="btn btn-secondary"><span class="english">Explore</span><span class="hindi">पता लगाएं</span><span class="marathi">शोधा</span></a>
+                </div>
+                <div class="service-card">
+                    <div class="pathway-icon">🎨</div>
+                    <h3><span class="english">Arts & Humanities</span><span class="hindi">कला और मानविकी</span><span class="marathi">कला आणि मानवता</span></h3>
+                    <p><span class="english">Design, Journalism, UPSC optional subjects and creative fields.</span><span class="hindi">डिजाइन, पत्रकारिता, यूपीएससी वैकल्पिक विषय और रचनात्मक क्षेत्र।</span><span class="marathi">डिझाइन, पत्रकारिता, यूपीएससी पर्यायी विषय आणि सर्जनशील क्षेत्रे.</span></p>
+                    <a href="arts2.html" class="btn btn-secondary"><span class="english">Explore</span><span class="hindi">पता लगाएं</span><span class="marathi">शोधा</span></a>
+                </div>
+                <div class="service-card">
+                    <div class="pathway-icon">🤖</div>
+                    <h3><span class="english">Emerging Technologies</span><span class="hindi">उभरती प्रौद्योगिकियां</span><span class="marathi">उभरत्या तंत्रज्ञान</span></h3>
+                    <p><span class="english">AI/ML, Cybersecurity, Web Development, IoT and new age careers.</span><span class="hindi">एआई/एमएल, साइबर सुरक्षा, वेब विकास, आईओटी और नए युग के करियर।</span><span class="marathi">एआय/एमएल, सायबर सुरक्षा, वेब विकास, आयओटी आणि नवीन युगातील करिअर.</span></p>
+                    <a href="technologies.html" class="btn btn-secondary"><span class="english">Explore</span><span class="hindi">पता लगाएं</span><span class="marathi">शोधा</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">
+                <span class="english">Exam Preparation</span>
+                <span class="hindi">परीक्षा की तैयारी</span>
+                <span class="marathi">परीक्षा तयारी</span>
+            </h2>
+            <p class="features">
+                <span class="english">Get detailed information about major competitive exams and their preparation strategies.</span>
+                <span class="hindi">प्रमुख प्रतियोगी परीक्षाओं और उनकी तैयारी की रणनीतियों के बारे में विस्तृत जानकारी प्राप्त करें।</span>
+                <span class="marathi">प्रमुख स्पर्धा परीक्षा आणि त्यांच्या तयारीच्या धोरणांबद्दल सविस्तर माहिती मिळवा.</span>
+            </p>
+
+            <div class="exam-table-container">
+                <table class="exam-table">
+                    <thead>
+                        <tr>
+                            <th><span class="english">Exam</span><span class="hindi">परीक्षा</span><span class="marathi">परीक्षा</span></th>
+                            <th><span class="english">Eligibility</span><span class="hindi">पात्रता</span><span class="marathi">पात्रता</span></th>
+                            <th><span class="english">Pattern</span><span class="hindi">पैटर्न</span><span class="marathi">पॅटर्न</span></th>
+                            <th><span class="english">Best Resources</span><span class="hindi">सर्वोत्तम संसाधन</span><span class="marathi">सर्वोत्तम संसाधने</span></th>
+                            <th><span class="english">Official Website</span><span class="hindi">आधिकारिक वेबसाइट</span><span class="marathi">अधिकृत वेबसाइट</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>JEE Main</td>
+                            <td>12th PCM</td>
+                            <td>2 Papers</td>
+                            <td>NTA, Allen modules, HC Verma</td>
+                            <td><a href="https://jeemain.nta.ac.in" target="_blank">jeemain.nta.ac.in</a></td>
+                        </tr>
+                        <tr>
+                            <td>NEET</td>
+                            <td>12th PCB</td>
+                            <td>1 Paper</td>
+                            <td>NCERT, MTG, Aakash modules</td>
+                            <td><a href="https://neet.nta.nic.in" target="_blank">neet.nta.nic.in</a></td>
+                        </tr>
+                        <tr>
+                            <td>UPSC</td>
+                            <td>Graduate</td>
+                            <td>3 Stages</td>
+                            <td>Vision IAS, InsightsIAS, NCERT</td>
+                            <td><a href="https://upsc.gov.in" target="_blank">upsc.gov.in</a></td>
+                        </tr>
+                        <tr>
+                            <td>CAT</td>
+                            <td>Graduate</td>
+                            <td>3 Sections</td>
+                            <td>Arun Sharma, IMS, TIME</td>
+                            <td><a href="https://iimcat.ac.in" target="_blank">iimcat.ac.in</a></td>
+                        </tr>
+                        <tr>
+                            <td>CLAT</td>
+                            <td>10+2</td>
+                            <td>5 Sections</td>
+                            <td>Legal Edge, CLATapult, LST</td>
+                            <td><a href="https://consortiumofnlus.ac.in" target="_blank">consortiumofnlus.ac.in</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="services-grid" style="margin-top: 4rem;">
+                <div class="service-card">
+                    <div class="resource-icon">📚</div>
+                    <h3><span class="english">Syllabus PDFs</span><span class="hindi">पाठ्यक्रम पीडीएफ</span><span class="marathi">अभ्यासक्रम पीडीएफ</span></h3>
+                    <p><span class="english">Download detailed syllabus for all major exams with topic-wise breakdown.</span><span class="hindi">सभी प्रमुख परीक्षाओं के लिए विषय-वार विस्तृत पाठ्यक्रम डाउनलोड करें।</span><span class="marathi">सर्व प्रमुख परीक्षांसाठी विषयवार सविस्तर अभ्यासक्रम डाउनलोड करा.</span></p>
+                    <a href="https://www.aglasem.com/competitive-exams-syllabus/" target="_blank" class="btn btn-primary">
+                        <span class="english">Download</span>
+                        <span class="hindi">डाउनलोड करें</span>
+                        <span class="marathi">डाउनलोड करा</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="resource-icon">📅</div>
+                    <h3><span class="english">Exam Calendar</span><span class="hindi">परीक्षा कैलेंडर</span><span class="marathi">परीक्षा कॅलेंडर</span></h3>
+                    <p><span class="english">Never miss an important exam date with our comprehensive calendar.</span><span class="hindi">हमारे व्यापक कैलेंडर के साथ कोई भी महत्वपूर्ण परीक्षा तिथि न चूकें।</span><span class="marathi">आमच्या सर्वसमावेशक कॅलेंडरसह कोणतीही महत्त्वाची परीक्षा तारीख चुकवू नका.</span></p>
+                    <a href="https://www.jagranjosh.com/articles/competitive-exam-calendar-1596791242-1" target="_blank" class="btn btn-primary">
+                        <span class="english">View Calendar</span>
+                        <span class="hindi">कैलेंडर देखें</span>
+                        <span class="marathi">कॅलेंडर पहा</span>
+                    </a>
+                </div>
+                <div class="service-card">
+                    <div class="resource-icon">📝</div>
+                    <h3><span class="english">Previous Papers</span><span class="hindi">पिछले पेपर</span><span class="marathi">मागील पेपर्स</span></h3>
+                    <p><span class="english">Practice with last 10 years question papers and detailed solutions.</span><span class="hindi">पिछले 10 वर्षों के प्रश्न पत्रों और विस्तृत समाधानों के साथ अभ्यास करें।</span><span class="marathi">मागील 10 वर्षांच्या प्रश्नपत्रिका आणि सविस्तर उत्तरांसह सराव करा.</span></p>
+                    <a href="https://www.examveda.com/competitive-exam-questions/" target="_blank" class="btn btn-primary">
+                        <span class="english">Access Papers</span>
+                        <span class="hindi">पेपर एक्सेस करें</span>
+                        <span class="marathi">पेपर्स पहा</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--secondary-bg);">
+       <div class="container">
+            <h2 class="section-title">
+                <span class="english">Skill Development</span>
+                <span class="hindi">कौशल विकास</span>
+                <span class="marathi">कौशल्य विकास</span>
+            </h2>
+            <p class="features">
+                <span class="english">Enhance your skills to stand out in competitive exams and career opportunities.</span>
+                <span class="hindi">प्रतियोगी परीक्षाओं और करियर के अवसरों में आगे बढ़ने के लिए अपने कौशल को बढ़ाएं।</span>
+                <span class="marathi">स्पर्धा परीक्षा आणि करिअर संधींमध्ये उत्कृष्ट कामगिरी करण्यासाठी तुमचे कौशल्ये वाढवा.</span>
+            </p>
+            <div class="services-grid">
+                 
+                <div class="service-card">
+                    <div class="skill-icon">💬</div>
+                    <h3><span class="english">Communication & English</span><span class="hindi">संचार और अंग्रेजी</span><span class="marathi">संवाद आणि इंग्रजी</span></h3>
+                    <p><span class="english">Improve your verbal and written communication skills for interviews and presentations.</span><span class="hindi">साक्षात्कार और प्रस्तुतियों के लिए अपने मौखिक और लिखित संचार कौशल में सुधार करें।</span><span class="marathi">मुलाखती आणि सादरीकरणांसाठी तुमचे बोलण्याचे आणि लेखनाचे कौशल्य सुधारा.</span></p>
+                    <a href="eng.html" class="btn btn-secondary"><span class="english">Learn More</span><span class="hindi">और जानें</span><span class="marathi">अधिक जाणून घ्या</span></a>
+                </div>
+                <div class="service-card">
+                    <div class="skill-icon">📄</div>
+                    <h3><span class="english">Resume & LinkedIn</span><span class="hindi">रिज्यूमे और लिंक्डइन</span><span class="marathi">बायोडेटा आणि लिंक्डइन</span></h3>
+                    <p><span class="english">Create professional resumes and optimize your LinkedIn profile for better opportunities.</span><span class="hindi">बेहतर अवसरों के लिए पेशेवर रिज्यूमे बनाएं और अपनी लिंक्डइन प्रोफाइल को ऑप्टिमाइज़ करें।</span><span class="marathi">उत्कृष्ट संधींसाठी व्यावसायिक बायोडेटा तयार करा आणि तुमचे लिंक्डइन प्रोफाइल सुधारा.</span></p>
+                    <a href="job.html" class="btn btn-secondary"><span class="english">Learn More</span><span class="hindi">और जानें</span><span class="marathi">अधिक जाणून घ्या</span></a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="skill-icon">🧠</div>
+                    <h3><span class="english">Aptitude & Reasoning</span><span class="hindi">योग्यता और तर्क</span><span class="marathi">योग्यता आणि तर्क</span></h3>
+                    <p><span class="english">Develop logical thinking, problem-solving abilities, and quantitative skills.</span><span class="hindi">तार्किक सोच, समस्या-समाधान क्षमताओं और मात्रात्मक कौशल का विकास करें।</span><span class="marathi">तार्किक विचार, समस्या सोडवण्याची क्षमता आणि संख्यात्मक कौशल्ये विकसित करा.</span></p>
+                    <a href="apti.html" class="btn btn-secondary"><span class="english">Learn More</span><span class="hindi">और जानें</span><span class="marathi">अधिक जाणून घ्या</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+         
+                </div>
+             </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 40px;">
+  <span class="english">Get Personalized Guidance</span>
+  <span class="hindi" style="display: none;">व्यक्तिगत मार्गदर्शन प्राप्त करें</span>
+  <span class="marathi" style="display: none;">वैयक्तिक मार्गदर्शन मिळवा</span>
+</h2>
+
+<div id="admission-form-container" class="admission-form-container">
+  <form id="queryForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+
+    <select id="subject" required>
+      <option value="" disabled selected
+        data-en="Select Query Topic"
+        data-hi="प्रश्न विषय चुनें"
+        data-mr="प्रश्नाचा विषय निवडा">Select Query Topic</option>
+
+      <option value="career"
+        data-en="Career Guidance"
+        data-hi="करियर मार्गदर्शन"
+        data-mr="करिअर मार्गदर्शन">Career Guidance</option>
+
+      <option value="exam"
+        data-en="Exam Preparation"
+        data-hi="परीक्षा की तैयारी"
+        data-mr="परीक्षा तयारी">Exam Preparation</option>
+
+      <option value="skill"
+        data-en="Skill Development"
+        data-hi="कौशल विकास"
+        data-mr="कौशल्य विकास">Skill Development</option>
+
+      <option value="mentorship"
+        data-en="Mentorship"
+        data-hi="मार्गदर्शन"
+        data-mr="मार्गदर्शन">Mentorship</option>
+
+      <option value="other"
+        data-en="Other"
+        data-hi="अन्य"
+        data-mr="इतर">Other</option>
+    </select>
+
+    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+
+    <button type="submit" class="btn btn-primary" style="width: 100%;">
+      <span class="english">Send Message</span>
+      <span class="hindi" style="display: none;">संदेश भेजें</span>
+      <span class="marathi" style="display: none;">संदेश पाठवा</span>
+    </button>
+  </form>
+
+  <p id="responseMsg" style="margin-top: 1rem; color: var(--accent-cyan);"></p>
+</div>
+
+<div class="services-grid" style="margin-top: 40px; border-top: 1px solid var(--card-border-cyan); padding-top: 40px;">
+  <div class="service-card" style="border: 1px solid var(--card-border-green);">
+    <h3>
+      <span class="english">Contact Us</span>
+      <span class="hindi" style="display: none;">हमसे संपर्क करें</span>
+      <span class="marathi" style="display: none;">आमच्याशी संपर्क साधा</span>
+    </h3>
+    <ul class="list-style-none">
+      <li><span class="english">Email: info@xshala.com</span><span class="hindi" style="display: none;">ईमेल: info@xshala.com</span><span class="marathi" style="display: none;">ईमेल: info@xshala.com</span></li>
+      <li><span class="english">Phone: +1 234 567 8900</span><span class="hindi" style="display: none;">फोन: +1 234 567 8900</span><span class="marathi" style="display: none;">फोन: +1 234 567 8900</span></li>
+      <li><span class="english">Address: 123 Education Street</span><span class="hindi" style="display: none;">पता: 123 एजुकेशन स्ट्रीट</span><span class="marathi" style="display: none;">पत्ता: 123 एज्युकेशन स्ट्रीट</span></li>
+    </ul>
+  </div>
+</div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Xshala. <span class="english">All Rights Reserved. | Designed for Student Success</span><span class="hindi">सभी अधिकार सुरक्षित। | छात्र सफलता के लिए डिज़ाइन किया गया</span><span class="marathi">सर्व हक्क राखीव. | विद्यार्थ्यांच्या यशासाठी डिझाइन केलेले</span></p>
+            </div>
+        </div>
+    </footer>
+
+
+<script>
+    function switchLanguage(lang) {
+  // Show/hide spans for the selected language
+  document.querySelectorAll('.english, .hindi, .marathi').forEach(span => {
+    span.style.display = span.classList.contains(lang) ? 'inline' : 'none';
+  });
+
+  // Update dropdown text
+  document.querySelectorAll('#subject option').forEach(opt => {
+    opt.textContent = opt.getAttribute('data-' + lang);
+  });
+
+  // Update placeholders
+  const placeholders = {
+    en: { name: "Full Name", email: "Email Address", message: "Your Message" },
+    hi: { name: "पूरा नाम", email: "ईमेल पता", message: "आपका संदेश" },
+    mr: { name: "पूर्ण नाव", email: "ईमेल पत्ता", message: "तुमचा संदेश" }
+  };
+  document.getElementById('name').placeholder = placeholders[lang].name;
+  document.getElementById('email').placeholder = placeholders[lang].email;
+  document.getElementById('message').placeholder = placeholders[lang].message;
+}
+
+// Example usage: call switchLanguage("hi") or "mr" when language button clicked
+// Default: English
+switchLanguage("en");
+
+/* Form Submission to Backend (Simulated) */
+document.getElementById("queryForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+    const responseMsg = document.getElementById("responseMsg");
+
+    // Simulate API call success
+    try {
+        // const res = await fetch("http://localhost:3000/submit-form", { ... });
+        // const data = await res.json();
+        
+        // --- START: SIMULATION CODE ---
+        const data = { message: `Thank you, ${name}! Your query about ${subject} has been received.` };
+        await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+        // --- END: SIMULATION CODE ---
+
+        responseMsg.textContent = data.message;
+        responseMsg.style.color = 'var(--accent-green)'; // Green for success
+        
+        alert('Thank you for your message! We will get back to you soon.');
+        e.target.reset();
+    } catch (error) {
+        console.error("Error:", error);
+        responseMsg.textContent = "Something went wrong! Please try again later.";
+        responseMsg.style.color = 'var(--accent-magenta)'; // Magenta for error
+    }
+});
+
+/* Theme Toggle Function */
+function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.querySelector('.mode-toggle-btn i');
+
+    if (body.classList.contains('theme-dark')) {
+        body.classList.remove('theme-dark');
+        body.classList.add('theme-day');
+        themeIcon.classList.remove('fa-moon');
+        themeIcon.classList.add('fa-sun');
+    } else {
+        body.classList.remove('theme-day');
+        body.classList.add('theme-dark');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+}
+
+/*
+ * FIX: The 'preventScroll: true' option in focus() stops the auto-scroll.
+ * This is crucial for fixing the page jumping issue when switching languages.
+ */
+function switchLanguage(lang) {
+    const body = document.body;
+    body.classList.remove('lang-english', 'lang-hindi', 'lang-marathi');
+    body.classList.add(`lang-${lang}`);
+
+    document.querySelectorAll('.language-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`.language-btn[data-lang="${lang}"]`).classList.add('active');
+
+    const selectElement = document.querySelector('#subject');
+    if (selectElement) {
+        // Use preventScroll: true to fix the unexpected page jump
+        selectElement.blur();
+        selectElement.focus({ preventScroll: true }); 
+    }
+}
+
+/* Initialize language on load */
+document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
+    let currentLang = 'english';
+    if (body.classList.contains('lang-hindi')) currentLang = 'hindi';
+    else if (body.classList.contains('lang-marathi')) currentLang = 'marathi';
+    else body.classList.add('lang-english');
+
+    const activeBtn = document.querySelector(`.language-btn[data-lang="${currentLang}"]`);
+    if (activeBtn) activeBtn.classList.add('active');
+
+    // Call switchLanguage with preventScroll: true logic
+    switchLanguage(currentLang);
+});
+
+/* Smooth Scrolling */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+ const form = document.getElementById("queryForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
+    try {
+      const res = await fetch("http://localhost:5000/api/queries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      const data = await res.json();
+      alert(data.message);
+
+      // Optional: clear the form after submission
+      form.reset();
+    } catch (err) {
+      alert("Error submitting your query. Please try again!");
+      console.error(err);
+    }
+  });
+</script>
+
+</body>
+
+</html>
